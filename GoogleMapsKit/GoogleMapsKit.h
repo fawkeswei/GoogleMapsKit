@@ -19,7 +19,7 @@ typedef enum {
 typedef enum {
     GoogleMapsModeDefault,
     GoogleMapsModeStandard,
-    GoogleMapsModeStreedView,
+    GoogleMapsModeStreetView,
 } GoogleMapsMode;
 
 

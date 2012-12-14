@@ -62,7 +62,7 @@
         case GoogleMapsModeStandard:
             [urlString appendString:@"&mapmode=standard"];
             break;
-        case GoogleMapsModeStreedView:
+        case GoogleMapsModeStreetView:
             [urlString appendString:@"&mapmode=streetview"];
             break;
         case GoogleMapsModeDefault:

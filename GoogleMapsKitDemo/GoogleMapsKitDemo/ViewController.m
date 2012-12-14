@@ -29,7 +29,7 @@
 
 - (IBAction)launchGoogleMaps:(id)sender {
     if ([GoogleMapsKit isGoogleMapsInstalled]) {
-        [GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5) zoom:14 mapMode:GoogleMapsModeStreedView view:GoogleMapsViewClearAll];
+        [GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5) zoom:14 mapMode:GoogleMapsModeDefault view:GoogleMapsViewClearAll];
     }
 }
 
