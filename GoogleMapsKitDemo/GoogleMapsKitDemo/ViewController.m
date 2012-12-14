@@ -29,13 +29,20 @@
 
 - (IBAction)launchGoogleMaps:(id)sender {
     if ([GoogleMapsKit isGoogleMapsInstalled]) {
-        [GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5) zoom:14 mapMode:GoogleMapsModeDefault view:GoogleMapsViewClearAll];
+        [GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5)
+                                    zoom:14
+                                 mapMode:GoogleMapsModeDefault
+                                    view:GoogleMapsViewClearAll];
     }
 }
 
 - (IBAction)searchGoogleMaps:(id)sender {
     if ([GoogleMapsKit isGoogleMapsInstalled]) {
-        [GoogleMapsKit showMapWithSearchKeyword:@"Infinity Cafe" withCenter:CLLocationCoordinate2DMake(25.0, 121.5) zoom:15 mapMode:GoogleMapsModeDefault view:GoogleMapsViewTraffic];
+        [GoogleMapsKit showMapWithSearchKeyword:@"Starbucks"
+                                     withCenter:CLLocationCoordinate2DMake(25.0, 121.5)
+                                           zoom:15
+                                        mapMode:GoogleMapsModeDefault
+                                           view:GoogleMapsViewTraffic];
     }
 }
 @end
