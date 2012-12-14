@@ -16,6 +16,35 @@
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:kCONST_PREFIX]];
 }
 
++ (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom {
+    [GoogleMapsKit showMapWithCenter:centerCoordinate zoom:zoom mapMode:GoogleMapsModeDefault view:GoogleMapsViewClearAll];
+}
+
++ (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
+    
+    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
+    
+    if (urlString) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+}
+
++ (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom {
+    [GoogleMapsKit showMapWithSearchKeyword:keyword withCenter:centerCoordinate zoom:zoom mapMode:GoogleMapsModeDefault view:GoogleMapsViewClearAll];
+}
+
++ (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
+    
+    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
+    [urlString appendFormat:@"&q=%@", [keyword stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    
+    if (urlString) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+}
+
+#pragma mark - Private Methods
+
 + (NSMutableString *)_parseCommonParamsWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
     NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
     
@@ -60,22 +89,5 @@
     return urlString;
 }
 
-+ (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    
-    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
-    if (urlString) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    }
-}
-
-+ (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    
-    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
-    
-    [urlString appendFormat:@"&q=%@", [keyword stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
-    if (urlString) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    }
-}
 
 @end
