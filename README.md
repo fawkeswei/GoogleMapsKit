@@ -34,6 +34,7 @@ Search Google Maps with keyword
 #Install
 
 1. Drag GoogleMapsKit folder to your project.
+2. Use Cocoapods
 	
 #Todo
 
