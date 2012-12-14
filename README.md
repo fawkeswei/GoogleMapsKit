@@ -15,11 +15,20 @@ Test if Google Maps for iPhone installed
     	
 Launch Google Maps
 
-	[GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5) zoom:14 GoogleMapsModeDefault view:GoogleMapsViewClearAll];
+	[GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5)
+	                            zoom:14
+	                         mapMode:GoogleMapsModeDefault
+	                            view:GoogleMapsViewClearAll];
+
 	
 Search Google Maps with keyword
 
-	[GoogleMapsKit showMapWithSearchKeyword:@"Starbucks" withCenter:CLLocationCoordinate2DMake(25.0, 121.5) zoom:15 mapMode:GoogleMapsModeDefault view:GoogleMapsViewTraffic];
+	[GoogleMapsKit showMapWithSearchKeyword:@"Starbucks"
+	                             withCenter:CLLocationCoordinate2DMake(25.0, 121.5)
+	                                   zoom:15
+	                                mapMode:GoogleMapsModeDefault
+	                                   view:GoogleMapsViewTraffic];
+
 	
 	
 #Install
