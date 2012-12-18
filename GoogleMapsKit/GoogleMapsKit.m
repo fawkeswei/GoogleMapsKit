@@ -16,6 +16,10 @@
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:kCONST_PREFIX]];
 }
 
++ (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate {
+    [GoogleMapsKit showMapWithCenter:centerCoordinate zoom:-1];
+}
+
 + (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom {
     [GoogleMapsKit showMapWithCenter:centerCoordinate zoom:zoom mapMode:GoogleMapsModeDefault view:GoogleMapsViewClearAll];
 }
@@ -27,6 +31,10 @@
     if (urlString) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }
+}
+
++ (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate {
+    [GoogleMapsKit showMapWithSearchKeyword:keyword withCenter:centerCoordinate zoom:-1];
 }
 
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom {
