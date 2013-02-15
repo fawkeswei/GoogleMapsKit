@@ -25,6 +25,7 @@
 		917D7FB7167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 917D7FB6167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.m */; };
 		917D7FC3167B7ACF00C9BCE4 /* GoogleMapsKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 917D7FC2167B7ACF00C9BCE4 /* GoogleMapsKit.m */; };
 		917D7FC5167B7AD900C9BCE4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917D7FC4167B7AD900C9BCE4 /* CoreLocation.framework */; };
+		AAA542D116CEEE9F0020D0C5 /* NSString+GoogleMapsKit.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA542D016CEEE9F0020D0C5 /* NSString+GoogleMapsKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		917D7FC1167B7ACF00C9BCE4 /* GoogleMapsKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapsKit.h; sourceTree = "<group>"; };
 		917D7FC2167B7ACF00C9BCE4 /* GoogleMapsKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsKit.m; sourceTree = "<group>"; };
 		917D7FC4167B7AD900C9BCE4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		AAA542CF16CEEE9F0020D0C5 /* NSString+GoogleMapsKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GoogleMapsKit.h"; sourceTree = "<group>"; };
+		AAA542D016CEEE9F0020D0C5 /* NSString+GoogleMapsKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GoogleMapsKit.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +176,8 @@
 			children = (
 				917D7FC1167B7ACF00C9BCE4 /* GoogleMapsKit.h */,
 				917D7FC2167B7ACF00C9BCE4 /* GoogleMapsKit.m */,
+				AAA542CF16CEEE9F0020D0C5 /* NSString+GoogleMapsKit.h */,
+				AAA542D016CEEE9F0020D0C5 /* NSString+GoogleMapsKit.m */,
 			);
 			name = GoogleMapsKit;
 			path = ../GoogleMapsKit;
@@ -292,6 +297,7 @@
 				917D7F96167B7AC700C9BCE4 /* AppDelegate.m in Sources */,
 				917D7F9F167B7AC700C9BCE4 /* ViewController.m in Sources */,
 				917D7FC3167B7ACF00C9BCE4 /* GoogleMapsKit.m in Sources */,
+				AAA542D116CEEE9F0020D0C5 /* NSString+GoogleMapsKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,8 +356,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen-Yu Wei (TY8NM2ZRDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen-Yu Wei (TY8NM2ZRDS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -366,8 +372,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6E0BD4E3-A201-4FBB-BF97-23204D40C4F6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E0BD4E3-A201-4FBB-BF97-23204D40C4F6";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -381,8 +386,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen-Yu Wei (TY8NM2ZRDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen-Yu Wei (TY8NM2ZRDS)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -390,8 +395,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "6E0BD4E3-A201-4FBB-BF97-23204D40C4F6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E0BD4E3-A201-4FBB-BF97-23204D40C4F6";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -400,14 +403,14 @@
 		917D7FBB167B7AC700C9BCE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoogleMapsKitDemo/GoogleMapsKitDemo-Prefix.pch";
 				INFOPLIST_FILE = "GoogleMapsKitDemo/GoogleMapsKitDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -415,14 +418,12 @@
 		917D7FBC167B7AC700C9BCE4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen-Yu Wei (TY8NM2ZRDS)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoogleMapsKitDemo/GoogleMapsKitDemo-Prefix.pch";
 				INFOPLIST_FILE = "GoogleMapsKitDemo/GoogleMapsKitDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E0BD4E3-A201-4FBB-BF97-23204D40C4F6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -431,8 +432,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GoogleMapsKitDemo.app/GoogleMapsKitDemo";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -441,8 +442,8 @@
 				GCC_PREFIX_HEADER = "GoogleMapsKitDemo/GoogleMapsKitDemo-Prefix.pch";
 				INFOPLIST_FILE = "GoogleMapsKitDemoTests/GoogleMapsKitDemoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -452,8 +453,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GoogleMapsKitDemo.app/GoogleMapsKitDemo";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen-Yu Wei (G76UDD656B)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -462,8 +463,6 @@
 				GCC_PREFIX_HEADER = "GoogleMapsKitDemo/GoogleMapsKitDemo-Prefix.pch";
 				INFOPLIST_FILE = "GoogleMapsKitDemoTests/GoogleMapsKitDemoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7A2B3D9-84ED-4775-97B3-C94C6ECA0F33";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};

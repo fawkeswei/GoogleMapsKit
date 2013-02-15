@@ -7,6 +7,7 @@
 //
 
 #import "GoogleMapsKit.h"
+#import "NSString+GoogleMapsKit.h"
 
 #define kCONST_PREFIX @"comgooglemaps://"
 
@@ -44,7 +45,7 @@
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
     
     NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
-    [urlString appendFormat:@"&q=%@", [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [urlString appendFormat:@"&q=%@", keyword.urlEncode];
     
     if (urlString) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
