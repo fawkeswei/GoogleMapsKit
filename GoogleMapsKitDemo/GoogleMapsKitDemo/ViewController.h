@@ -9,9 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-- (IBAction)launchGoogleMaps:(id)sender;
-
-- (IBAction)searchGoogleMaps:(id)sender;
-
 @end

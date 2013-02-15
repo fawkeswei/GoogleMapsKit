@@ -45,4 +45,10 @@
                                            view:GoogleMapsViewTraffic];
     }
 }
+
+- (IBAction)searchOnlyKeyword:(id)sender {
+    if ([GoogleMapsKit isGoogleMapsInstalled]) {
+        [GoogleMapsKit showMapWithSearchKeyword:@"Starbucks"];
+    }
+}
 @end
