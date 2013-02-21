@@ -7,8 +7,9 @@
 //
 
 #import "GoogleMapsKit.h"
+#import "NSString+GoogleMapsKit.h"
 
-#define kCONST_PREFIX @"comgooglemaps://"
+#define kCONST_PREFIX @"comgooglemaps://?"
 
 @implementation GoogleMapsKit
 
@@ -33,6 +34,10 @@
     }
 }
 
++ (void)showMapWithSearchKeyword:(NSString *)keyword {
+    [GoogleMapsKit showMapWithSearchKeyword:keyword withCenter:kCLLocationCoordinate2DInvalid zoom:-1];
+}
+
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate {
     [GoogleMapsKit showMapWithSearchKeyword:keyword withCenter:centerCoordinate zoom:-1];
 }
@@ -44,7 +49,7 @@
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
     
     NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
-    [urlString appendFormat:@"&q=%@", [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [urlString appendFormat:@"&q=%@", keyword.urlEncode];
     
     if (urlString) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
@@ -57,9 +62,7 @@
     NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
     
     if (CLLocationCoordinate2DIsValid(centerCoordinate)) {
-        [urlString appendFormat:@"?center=%f,%f", centerCoordinate.latitude, centerCoordinate.longitude];
-    } else {
-        return nil;
+        [urlString appendFormat:@"center=%f,%f", centerCoordinate.latitude, centerCoordinate.longitude];
     }
     
     if (zoom > 0) {
