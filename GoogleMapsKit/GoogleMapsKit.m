@@ -63,28 +63,66 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
     }
 }
 
-+(void) showMapWithDirectionsForStartingPoint:(CLLocationCoordinate2D) saddr endPoint:(CLLocationCoordinate2D) daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
++(void) showMapWithDirectionsForStartAddress:(NSString *) saddr destinationAddress:(NSString *) daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
+
+    NSString *start = nil;
+
+    NSString *destination = nil;
+
+    if ([saddr length] > 0)
+        start = [NSString stringWithFormat:@"saddr=%@", [saddr urlEncode]];
+    else
+        start = @"saddr="; // leave it blank and google maps will use current location
+
+    if ([daddr length] > 0)
+        destination = [NSString stringWithFormat:@"daddr=%@", [daddr urlEncode]];
+    else
+        destination = @"";
+
+    [self showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
+
+}
+
++(void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)saddr endPointCoordinate:(CLLocationCoordinate2D)daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
+
+    NSString * start = nil;
+
+    NSString * destination = nil;
+
+    if (CLLocationCoordinate2DIsValid(saddr) && saddr.latitude != 0 && saddr.longitude != 0)
+        start = [NSString stringWithFormat:@"saddr=%f,%f", saddr.latitude, saddr.longitude];
+    else
+        start = @"saddr="; // leave it blank and google maps will use current location
+
+    if (CLLocationCoordinate2DIsValid(daddr))
+        destination = [NSString stringWithFormat:@"daddr=%f,%f", daddr.latitude, daddr.longitude];
+
+    [self showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
+
+}
+
++(void) showMapDirectionsWithStart:(id) saddr destination:(id) daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
 
     NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
 
-    NSMutableArray * args = [NSMutableArray array];
+    NSMutableArray *args = [NSMutableArray array];
 
-    if (CLLocationCoordinate2DIsValid(saddr))
-        [args addObject:[NSString stringWithFormat:@"saddr=%f,%f", saddr.latitude, saddr.longitude]];
+    if ([saddr length] > 0)
+        [args addObject:saddr];
 
-    if (CLLocationCoordinate2DIsValid(daddr))
-        [args addObject:[NSString stringWithFormat:@"daddr=%f,%f", daddr.latitude, daddr.longitude]];
+    if ([daddr length] > 0)
+        [args addObject:daddr];
 
     if (directionsMode < sizeof(GoogleMapsDirectionsMode_toString))
         [args addObject:[NSString stringWithFormat:@"directionsmode=%@", GoogleMapsDirectionsMode_toString[directionsMode]]];
 
-    for (NSInteger i=0; i < [args count]; i++) {
+    for (NSInteger i = 0; i < [args count]; i++) {
 
-        NSString * arg = [args objectAtIndex:i];
+        NSString *arg = [args objectAtIndex:i];
 
         [urlString appendString:arg];
 
-        if (i < [args count]-1)
+        if (i < [args count] - 1)
             [urlString appendString:@"&"];
     }
 
