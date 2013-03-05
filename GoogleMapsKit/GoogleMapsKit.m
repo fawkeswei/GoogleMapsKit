@@ -11,6 +11,13 @@
 
 #define kCONST_PREFIX @"comgooglemaps://?"
 
+NSString * const GoogleMapsDirectionsMode_toString[] = {
+  @"driving",
+  @"transit",
+  @"walking"
+};
+
+
 @implementation GoogleMapsKit
 
 + (BOOL)isGoogleMapsInstalled {
@@ -56,6 +63,35 @@
     }
 }
 
++(void) showMapWithDirectionsForStartingPoint:(CLLocationCoordinate2D) saddr endPoint:(CLLocationCoordinate2D) daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
+
+    NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
+
+    NSMutableArray * args = [NSMutableArray array];
+
+    if (CLLocationCoordinate2DIsValid(saddr))
+        [args addObject:[NSString stringWithFormat:@"saddr=%f,%f", saddr.latitude, saddr.longitude]];
+
+    if (CLLocationCoordinate2DIsValid(daddr))
+        [args addObject:[NSString stringWithFormat:@"daddr=%f,%f", daddr.latitude, daddr.longitude]];
+
+    if (directionsMode < sizeof(GoogleMapsDirectionsMode_toString))
+        [args addObject:[NSString stringWithFormat:@"directionsmode=%@", GoogleMapsDirectionsMode_toString[directionsMode]]];
+
+    for (NSInteger i=0; i < [args count]; i++) {
+
+        NSString * arg = [args objectAtIndex:i];
+
+        [urlString appendString:arg];
+
+        if (i < [args count]-1)
+            [urlString appendString:@"&"];
+    }
+
+    if (urlString)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+
+}
 #pragma mark - Private Methods
 
 + (NSMutableString *)_parseCommonParamsWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
