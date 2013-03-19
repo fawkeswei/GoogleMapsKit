@@ -63,7 +63,15 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
     }
 }
 
-+(void) showMapWithDirectionsForStartAddress:(NSString *) saddr destinationAddress:(NSString *) daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
++ (void)showMapWithDirectionsForDestinationAddress:(NSString *)daddr {
+    [self showMapWithDirectionsForDestinationAddress:daddr directionsMode:-1];
+}
+
++ (void)showMapWithDirectionsForDestinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode {
+    [self showMapWithDirectionsForStartAddress:nil destinationAddress:daddr directionsMode:directionsMode];
+}
+
++ (void)showMapWithDirectionsForStartAddress:(NSString *)saddr destinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode {
 
     NSString *start = nil;
 
@@ -79,29 +87,37 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
     else
         destination = @"";
 
-    [self showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
+    [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
 
 }
 
-+(void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)saddr endPointCoordinate:(CLLocationCoordinate2D)daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
++ (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D )endCoordinate {
+    [self showMapWithDirectionsForEndPointCoordinate:kCLLocationCoordinate2DInvalid directionsMode:-1];
+}
+
++ (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode {
+    [self showMapWithDirectionsForStartingPointCoordinate:kCLLocationCoordinate2DInvalid endPointCoordinate:endCoordinate directionsMode:directionsMode];
+}
+
++ (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)startCoordinate endPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode {
 
     NSString * start = nil;
 
     NSString * destination = nil;
 
-    if (CLLocationCoordinate2DIsValid(saddr) && saddr.latitude != 0 && saddr.longitude != 0)
-        start = [NSString stringWithFormat:@"saddr=%f,%f", saddr.latitude, saddr.longitude];
+    if (CLLocationCoordinate2DIsValid(startCoordinate) && startCoordinate.latitude != 0 && startCoordinate.longitude != 0)
+        start = [NSString stringWithFormat:@"saddr=%f,%f", startCoordinate.latitude, startCoordinate.longitude];
     else
         start = @"saddr="; // leave it blank and google maps will use current location
 
-    if (CLLocationCoordinate2DIsValid(daddr))
-        destination = [NSString stringWithFormat:@"daddr=%f,%f", daddr.latitude, daddr.longitude];
+    if (CLLocationCoordinate2DIsValid(endCoordinate))
+        destination = [NSString stringWithFormat:@"daddr=%f,%f", endCoordinate.latitude, endCoordinate.longitude];
 
-    [self showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
+    [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
 
 }
 
-+(void) showMapDirectionsWithStart:(id) saddr destination:(id) daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
++ (void)_showMapDirectionsWithStart:(id)saddr destination:(id)daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
 
     NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
 

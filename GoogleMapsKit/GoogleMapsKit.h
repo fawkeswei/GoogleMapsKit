@@ -41,8 +41,12 @@ typedef enum {
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom;
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view;
 
-+ (void)showMapWithDirectionsForStartAddress:(NSString *)saddr destinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode;
-+ (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)saddr endPointCoordinate:(CLLocationCoordinate2D)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode;
++ (void)showMapWithDirectionsForDestinationAddress:(NSString *)daddr;
++ (void)showMapWithDirectionsForDestinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode )directionsMode;
++ (void)showMapWithDirectionsForStartAddress:(NSString *)saddr destinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode )directionsMode;
 
++ (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D )endCoordinate;
++ (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D )endCoordinate directionsMode:(GoogleMapsDirectionsMode )directionsMode;
++ (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D )startCoordinate endPointCoordinate:(CLLocationCoordinate2D )endCoordinate directionsMode:(GoogleMapsDirectionsMode )directionsMode;
 
 @end
