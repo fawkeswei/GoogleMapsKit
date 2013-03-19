@@ -30,6 +30,12 @@ Search Google Maps with keyword
 	                                   view:GoogleMapsViewTraffic];
 
 	
+Show Directions
+
+    [GoogleMapsKit showMapWithDirectionsForStartingPointCoordinate:CLLocationCoordinate2DMake(25.027, 121.543)
+                                                endPointCoordinate:CLLocationCoordinate2DMake(25.039, 121.565)
+                                                    directionsMode:GoogleMapsDirectionsModeDriving];
+
 
 See `GoogleMapsKit.h` for more convenience methods.
 
@@ -40,9 +46,6 @@ Two ways to install
 1. Drag `GoogleMapsKit/` folder to your project.
 2. Use [Cocoapods](https://github.com/CocoaPods/CocoaPods)
 
-#Todo
-
-Launch Google Maps with directions
 
 #License
 
