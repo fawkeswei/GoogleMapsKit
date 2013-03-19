@@ -22,6 +22,11 @@ typedef enum {
     GoogleMapsModeStreetView,
 } GoogleMapsMode;
 
+typedef enum {
+    GoogleMapsDirectionsModeDriving,
+    GoogleMapsDirectionsModeTransit,
+    GoogleMapsDirectionsModeWalking
+} GoogleMapsDirectionsMode;
 
 @interface GoogleMapsKit : NSObject
 
@@ -35,5 +40,9 @@ typedef enum {
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate;
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom;
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view;
+
++ (void)showMapWithDirectionsForStartAddress:(NSString *)saddr destinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode;
++ (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)saddr endPointCoordinate:(CLLocationCoordinate2D)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode;
+
 
 @end
