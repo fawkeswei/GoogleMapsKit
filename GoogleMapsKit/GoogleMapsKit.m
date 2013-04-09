@@ -92,7 +92,7 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
 }
 
 + (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D )endCoordinate {
-    [self showMapWithDirectionsForEndPointCoordinate:kCLLocationCoordinate2DInvalid directionsMode:-1];
+    [self showMapWithDirectionsForEndPointCoordinate:endCoordinate directionsMode:-1];
 }
 
 + (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode {
