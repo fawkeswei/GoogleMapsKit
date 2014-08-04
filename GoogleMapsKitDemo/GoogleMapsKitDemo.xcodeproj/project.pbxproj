@@ -18,7 +18,6 @@
 		917D7F9C167B7AC700C9BCE4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 917D7F9B167B7AC700C9BCE4 /* Default-568h@2x.png */; };
 		917D7F9F167B7AC700C9BCE4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 917D7F9E167B7AC700C9BCE4 /* ViewController.m */; };
 		917D7FA2167B7AC700C9BCE4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917D7FA0167B7AC700C9BCE4 /* ViewController.xib */; };
-		917D7FAA167B7AC700C9BCE4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917D7FA9167B7AC700C9BCE4 /* SenTestingKit.framework */; };
 		917D7FAB167B7AC700C9BCE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917D7F85167B7AC700C9BCE4 /* UIKit.framework */; };
 		917D7FAC167B7AC700C9BCE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917D7F87167B7AC700C9BCE4 /* Foundation.framework */; };
 		917D7FB4167B7AC700C9BCE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 917D7FB2167B7AC700C9BCE4 /* InfoPlist.strings */; };
@@ -56,7 +55,6 @@
 		917D7F9E167B7AC700C9BCE4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		917D7FA1167B7AC700C9BCE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		917D7FA8167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleMapsKitDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		917D7FA9167B7AC700C9BCE4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		917D7FB1167B7AC700C9BCE4 /* GoogleMapsKitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleMapsKitDemoTests-Info.plist"; sourceTree = "<group>"; };
 		917D7FB3167B7AC700C9BCE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		917D7FB5167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapsKitDemoTests.h; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				917D7FAA167B7AC700C9BCE4 /* SenTestingKit.framework in Frameworks */,
 				917D7FAB167B7AC700C9BCE4 /* UIKit.framework in Frameworks */,
 				917D7FAC167B7AC700C9BCE4 /* Foundation.framework in Frameworks */,
 			);
@@ -120,7 +117,6 @@
 				917D7F85167B7AC700C9BCE4 /* UIKit.framework */,
 				917D7F87167B7AC700C9BCE4 /* Foundation.framework */,
 				917D7F89167B7AC700C9BCE4 /* CoreGraphics.framework */,
-				917D7FA9167B7AC700C9BCE4 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,7 +216,7 @@
 			name = GoogleMapsKitDemoTests;
 			productName = GoogleMapsKitDemoTests;
 			productReference = 917D7FA8167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -228,6 +224,7 @@
 		917D7F78167B7AC600C9BCE4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = fawkeswei;
 			};
@@ -437,6 +434,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoogleMapsKitDemo/GoogleMapsKitDemo-Prefix.pch";
@@ -445,7 +443,6 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -458,13 +455,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoogleMapsKitDemo/GoogleMapsKitDemo-Prefix.pch";
 				INFOPLIST_FILE = "GoogleMapsKitDemoTests/GoogleMapsKitDemoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

@@ -9,24 +9,25 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, GoogleMapsView) {
     GoogleMapsViewSatellite,
     GoogleMapsViewTraffic,
-	GoogleMapsViewTransit,
+    GoogleMapsViewTransit,
     GoogleMapsViewClearAll,
-} GoogleMapsView;
+};
 
-typedef enum {
+typedef NS_ENUM(NSInteger, GoogleMapsMode) {
     GoogleMapsModeDefault,
     GoogleMapsModeStandard,
     GoogleMapsModeStreetView,
-} GoogleMapsMode;
+};
 
-typedef enum {
+typedef NS_ENUM(NSInteger, GoogleMapsDirectionsMode) {
     GoogleMapsDirectionsModeDriving,
     GoogleMapsDirectionsModeTransit,
-    GoogleMapsDirectionsModeWalking
-} GoogleMapsDirectionsMode;
+    GoogleMapsDirectionsModeWalking,
+    GoogleMapsDirectionsModeBicycling,
+};
 
 @interface GoogleMapsKit : NSObject
 

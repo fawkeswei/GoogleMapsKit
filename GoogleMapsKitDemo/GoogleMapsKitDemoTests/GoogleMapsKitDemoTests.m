@@ -26,7 +26,7 @@
 
 - (void)testExample
 {
-    STAssertTrue(YES, @"");
+    XCTAssertTrue(YES, @"");
 }
 
 @end

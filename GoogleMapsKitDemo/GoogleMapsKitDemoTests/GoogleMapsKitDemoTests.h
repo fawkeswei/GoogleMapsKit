@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 fawkeswei. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface GoogleMapsKitDemoTests : SenTestCase
+@interface GoogleMapsKitDemoTests : XCTestCase
 
 @end

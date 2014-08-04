@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (GoogleMapsKit)
+
 - (NSString *)urlEncode;
+
 @end

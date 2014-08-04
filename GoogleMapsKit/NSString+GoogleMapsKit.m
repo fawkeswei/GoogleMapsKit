@@ -9,6 +9,7 @@
 #import "NSString+GoogleMapsKit.h"
 
 @implementation NSString (GoogleMapsKit)
+
 //from http://stackoverflow.com/questions/8088473/url-encode-a-nsstring
 - (NSString *)urlEncode {
     NSMutableString *output = [NSMutableString string];
@@ -29,4 +30,5 @@
     }
     return output;
 }
+
 @end

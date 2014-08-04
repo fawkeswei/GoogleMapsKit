@@ -15,14 +15,19 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad]
+- (void)viewDidLoad {
+    [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    NSString *urlString = @"comgooglemaps-x-callback://?center=40.765819,-73.975866&zoom=14"
+    "&x-success=melman://?resume=true"
+    "&x-source=MMMMelman";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

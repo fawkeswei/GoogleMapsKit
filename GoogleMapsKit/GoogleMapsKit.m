@@ -9,19 +9,12 @@
 #import "GoogleMapsKit.h"
 #import "NSString+GoogleMapsKit.h"
 
-#define kCONST_PREFIX @"comgooglemaps://?"
-
-NSString * const GoogleMapsDirectionsMode_toString[] = {
-  @"driving",
-  @"transit",
-  @"walking"
-};
-
+NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
 
 @implementation GoogleMapsKit
 
 + (BOOL)isGoogleMapsInstalled {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:kCONST_PREFIX]];
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:GoogleMapsURLScheme]];
 }
 
 + (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate {
@@ -33,7 +26,6 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
 }
 
 + (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    
     NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
     
     if (urlString) {
@@ -54,7 +46,6 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
 }
 
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    
     NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
     [urlString appendFormat:@"&q=%@", keyword.urlEncode];
     
@@ -77,18 +68,21 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
 
     NSString *destination = nil;
 
-    if ([saddr length] > 0)
+    if ([saddr length] > 0) {
         start = [NSString stringWithFormat:@"saddr=%@", [saddr urlEncode]];
-    else
+    }
+    else {
         start = @"saddr="; // leave it blank and google maps will use current location
+    }
 
-    if ([daddr length] > 0)
+    if ([daddr length] > 0) {
         destination = [NSString stringWithFormat:@"daddr=%@", [daddr urlEncode]];
-    else
+    }
+    else {
         destination = @"";
+    }
 
     [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
-
 }
 
 + (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D )endCoordinate {
@@ -100,63 +94,62 @@ NSString * const GoogleMapsDirectionsMode_toString[] = {
 }
 
 + (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)startCoordinate endPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode {
-
     NSString * start = nil;
 
     NSString * destination = nil;
 
-    if (CLLocationCoordinate2DIsValid(startCoordinate) && startCoordinate.latitude != 0 && startCoordinate.longitude != 0)
+    if (CLLocationCoordinate2DIsValid(startCoordinate) && startCoordinate.latitude != 0 && startCoordinate.longitude != 0) {
         start = [NSString stringWithFormat:@"saddr=%f,%f", startCoordinate.latitude, startCoordinate.longitude];
-    else
+    }
+    else {
         start = @"saddr="; // leave it blank and google maps will use current location
-
-    if (CLLocationCoordinate2DIsValid(endCoordinate))
-        destination = [NSString stringWithFormat:@"daddr=%f,%f", endCoordinate.latitude, endCoordinate.longitude];
-
-    [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
-
-}
-
-+ (void)_showMapDirectionsWithStart:(id)saddr destination:(id)daddr directionsMode:(GoogleMapsDirectionsMode) directionsMode {
-
-    NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
-
-    NSMutableArray *args = [NSMutableArray array];
-
-    if ([saddr length] > 0)
-        [args addObject:saddr];
-
-    if ([daddr length] > 0)
-        [args addObject:daddr];
-
-    if (directionsMode < sizeof(GoogleMapsDirectionsMode_toString))
-        [args addObject:[NSString stringWithFormat:@"directionsmode=%@", GoogleMapsDirectionsMode_toString[directionsMode]]];
-
-    for (NSInteger i = 0; i < [args count]; i++) {
-
-        NSString *arg = [args objectAtIndex:i];
-
-        [urlString appendString:arg];
-
-        if (i < [args count] - 1)
-            [urlString appendString:@"&"];
     }
 
-    if (urlString)
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    if (CLLocationCoordinate2DIsValid(endCoordinate)) {
+        destination = [NSString stringWithFormat:@"daddr=%f,%f", endCoordinate.latitude, endCoordinate.longitude];
+    }
 
+    [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
 }
+
 #pragma mark - Private Methods
 
++ (NSString *)stringFromGoogleMapsDirectionsMode:(GoogleMapsDirectionsMode)mode {
+    switch (mode) {
+        case GoogleMapsDirectionsModeDriving: return @"driving";
+        case GoogleMapsDirectionsModeTransit: return @"transit";
+        case GoogleMapsDirectionsModeWalking: return @"walking";
+        case GoogleMapsDirectionsModeBicycling: return @"bicycling";
+        default: return @"";
+    }
+}
+
++ (void)_showMapDirectionsWithStart:(id)saddr destination:(id)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode {
+    NSMutableArray *args = [NSMutableArray array];
+
+    if ([saddr length] != 0) {
+        [args addObject:saddr];
+    }
+
+    if ([daddr length] != 0) {
+        [args addObject:daddr];
+    }
+
+    [args addObject:[NSString stringWithFormat:@"directionsmode=%@", [GoogleMapsKit stringFromGoogleMapsDirectionsMode:directionsMode]]];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", GoogleMapsURLScheme, [args componentsJoinedByString:@"&"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
 + (NSMutableString *)_parseCommonParamsWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    NSMutableString *urlString = [NSMutableString stringWithString:kCONST_PREFIX];
+    NSMutableString *urlString = [NSMutableString stringWithString:GoogleMapsURLScheme];
     
     if (CLLocationCoordinate2DIsValid(centerCoordinate)) {
         [urlString appendFormat:@"center=%f,%f", centerCoordinate.latitude, centerCoordinate.longitude];
     }
     
     if (zoom > 0) {
-        [urlString appendFormat:@"&zoom=%d", zoom];
+        [urlString appendFormat:@"&zoom=%@", @(zoom)];
     }
     
     switch (mapMode) {
