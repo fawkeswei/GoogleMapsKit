@@ -15,4 +15,5 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '5.0'
   s.source_files = 'GoogleMapsKit/*.{h,m}'
   s.framework  = 'CoreLocation'
+  s.requires_arc = true
 end
