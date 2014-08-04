@@ -9,7 +9,8 @@
 #import "GoogleMapsKit.h"
 #import "NSString+GoogleMapsKit.h"
 
-NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
+NSString * const GoogleMapsURLScheme = @"comgooglemaps://?";
+NSString * const GoogleMapsCallBackURLScheme = @"comgooglemaps-x-callback://?";
 
 @implementation GoogleMapsKit
 
@@ -26,7 +27,11 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
 }
 
 + (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
+    [GoogleMapsKit showMapWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view callbackAppName:nil callBackUrlScheme:nil];
+}
+
++ (void)showMapWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view callbackAppName:(NSString *)callbackAppName callBackUrlScheme:(NSString *)callBackUrlScheme {
+    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view callbackAppName:callbackAppName callBackUrlScheme:callBackUrlScheme];
     
     if (urlString) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
@@ -46,7 +51,11 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
 }
 
 + (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
-    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view];
+    [GoogleMapsKit showMapWithSearchKeyword:keyword withCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view callbackAppName:nil callBackUrlScheme:nil];
+}
+
++ (void)showMapWithSearchKeyword:(NSString *)keyword withCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view callbackAppName:(NSString *)callbackAppName callBackUrlScheme:(NSString *)callBackUrlScheme {
+    NSMutableString *urlString = [GoogleMapsKit _parseCommonParamsWithCenter:centerCoordinate zoom:zoom mapMode:mapMode view:view callbackAppName:callbackAppName callBackUrlScheme:callBackUrlScheme];
     [urlString appendFormat:@"&q=%@", keyword.urlEncode];
     
     if (urlString) {
@@ -55,14 +64,18 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
 }
 
 + (void)showMapWithDirectionsForDestinationAddress:(NSString *)daddr {
-    [self showMapWithDirectionsForDestinationAddress:daddr directionsMode:-1];
+    [GoogleMapsKit showMapWithDirectionsForDestinationAddress:daddr directionsMode:-1];
 }
 
 + (void)showMapWithDirectionsForDestinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode {
-    [self showMapWithDirectionsForStartAddress:nil destinationAddress:daddr directionsMode:directionsMode];
+    [GoogleMapsKit showMapWithDirectionsForStartAddress:nil destinationAddress:daddr directionsMode:directionsMode];
 }
 
 + (void)showMapWithDirectionsForStartAddress:(NSString *)saddr destinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode {
+    [GoogleMapsKit showMapWithDirectionsForStartAddress:saddr destinationAddress:daddr directionsMode:directionsMode callbackAppName:nil callBackUrlScheme:nil];
+}
+
++ (void)showMapWithDirectionsForStartAddress:(NSString *)saddr destinationAddress:(NSString *)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode callbackAppName:(NSString *)callbackAppName callBackUrlScheme:(NSString *)callBackUrlScheme {
 
     NSString *start = nil;
 
@@ -82,18 +95,22 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
         destination = @"";
     }
 
-    [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
+    [GoogleMapsKit _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode callbackAppName:callbackAppName callBackUrlScheme:callBackUrlScheme];
 }
 
 + (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D )endCoordinate {
-    [self showMapWithDirectionsForEndPointCoordinate:endCoordinate directionsMode:-1];
+    [GoogleMapsKit showMapWithDirectionsForEndPointCoordinate:endCoordinate directionsMode:-1];
 }
 
 + (void)showMapWithDirectionsForEndPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode {
-    [self showMapWithDirectionsForStartingPointCoordinate:kCLLocationCoordinate2DInvalid endPointCoordinate:endCoordinate directionsMode:directionsMode];
+    [GoogleMapsKit showMapWithDirectionsForStartingPointCoordinate:kCLLocationCoordinate2DInvalid endPointCoordinate:endCoordinate directionsMode:directionsMode];
 }
 
 + (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)startCoordinate endPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode {
+    [GoogleMapsKit showMapWithDirectionsForStartingPointCoordinate:startCoordinate endPointCoordinate:endCoordinate directionsMode:directionsMode callbackAppName:nil callBackUrlScheme:nil];
+}
+
++ (void)showMapWithDirectionsForStartingPointCoordinate:(CLLocationCoordinate2D)startCoordinate endPointCoordinate:(CLLocationCoordinate2D)endCoordinate directionsMode:(GoogleMapsDirectionsMode)directionsMode callbackAppName:(NSString *)callbackAppName callBackUrlScheme:(NSString *)callBackUrlScheme {
     NSString * start = nil;
 
     NSString * destination = nil;
@@ -109,7 +126,7 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
         destination = [NSString stringWithFormat:@"daddr=%f,%f", endCoordinate.latitude, endCoordinate.longitude];
     }
 
-    [self _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode];
+    [GoogleMapsKit _showMapDirectionsWithStart:start destination:destination directionsMode:directionsMode callbackAppName:callbackAppName callBackUrlScheme:callBackUrlScheme];
 }
 
 #pragma mark - Private Methods
@@ -124,7 +141,13 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
     }
 }
 
-+ (void)_showMapDirectionsWithStart:(id)saddr destination:(id)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode {
++ (void)_showMapDirectionsWithStart:(id)saddr destination:(id)daddr directionsMode:(GoogleMapsDirectionsMode)directionsMode callbackAppName:(NSString *)callbackAppName callBackUrlScheme:(NSString *)callBackUrlScheme {
+    NSMutableString *urlString = [NSMutableString stringWithString:GoogleMapsURLScheme];
+    if ([callbackAppName length] != 0 && [callBackUrlScheme length] != 0) {
+        urlString = [NSMutableString stringWithString:GoogleMapsCallBackURLScheme];
+        [urlString appendFormat:@"x-source=%@&x-success=%@", callbackAppName, callBackUrlScheme];
+    }
+    
     NSMutableArray *args = [NSMutableArray array];
 
     if ([saddr length] != 0) {
@@ -137,12 +160,15 @@ NSString * const GoogleMapsURLScheme = @"comgooglemaps-x-callback://";
 
     [args addObject:[NSString stringWithFormat:@"directionsmode=%@", [GoogleMapsKit stringFromGoogleMapsDirectionsMode:directionsMode]]];
 
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", GoogleMapsURLScheme, [args componentsJoinedByString:@"&"]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[urlString stringByAppendingString:[args componentsJoinedByString:@"&"]]]];
 }
 
-+ (NSMutableString *)_parseCommonParamsWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view {
++ (NSMutableString *)_parseCommonParamsWithCenter:(CLLocationCoordinate2D )centerCoordinate zoom:(NSInteger )zoom mapMode:(GoogleMapsMode )mapMode view:(GoogleMapsView )view callbackAppName:(NSString *)callbackAppName callBackUrlScheme:(NSString *)callBackUrlScheme {
     NSMutableString *urlString = [NSMutableString stringWithString:GoogleMapsURLScheme];
+    if ([callbackAppName length] != 0 && [callBackUrlScheme length] != 0) {
+        urlString = [NSMutableString stringWithString:GoogleMapsCallBackURLScheme];
+        [urlString appendFormat:@"x-source=%@&x-success=%@", callbackAppName, callBackUrlScheme];
+    }
     
     if (CLLocationCoordinate2DIsValid(centerCoordinate)) {
         [urlString appendFormat:@"center=%f,%f", centerCoordinate.latitude, centerCoordinate.longitude];

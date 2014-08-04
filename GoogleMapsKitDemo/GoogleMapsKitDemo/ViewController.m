@@ -19,12 +19,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    
-    NSString *urlString = @"comgooglemaps-x-callback://?center=40.765819,-73.975866&zoom=14"
-    "&x-success=melman://?resume=true"
-    "&x-source=MMMMelman";
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +31,9 @@
         [GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5)
                                     zoom:14
                                  mapMode:GoogleMapsModeDefault
-                                    view:GoogleMapsViewClearAll];
+                                    view:GoogleMapsViewClearAll
+                         callbackAppName:@"GoogleMapsKitDemo"
+                       callBackUrlScheme:@"googlemapskitdemo://"];
     }
 }
 
@@ -47,7 +43,9 @@
                                      withCenter:CLLocationCoordinate2DMake(25.0, 121.5)
                                            zoom:15
                                         mapMode:GoogleMapsModeDefault
-                                           view:GoogleMapsViewTraffic];
+                                           view:GoogleMapsViewTraffic
+                                callbackAppName:@"GoogleMapsKitDemo"
+                              callBackUrlScheme:@"googlemapskitdemo://"];
     }
 }
 

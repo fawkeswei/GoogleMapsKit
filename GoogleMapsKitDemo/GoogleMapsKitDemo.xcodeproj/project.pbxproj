@@ -54,7 +54,7 @@
 		917D7F9D167B7AC700C9BCE4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		917D7F9E167B7AC700C9BCE4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		917D7FA1167B7AC700C9BCE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		917D7FA8167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleMapsKitDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		917D7FA8167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = GoogleMapsKitDemoTests.octest; path = GoogleMapsKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		917D7FB1167B7AC700C9BCE4 /* GoogleMapsKitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleMapsKitDemoTests-Info.plist"; sourceTree = "<group>"; };
 		917D7FB3167B7AC700C9BCE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		917D7FB5167B7AC700C9BCE4 /* GoogleMapsKitDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapsKitDemoTests.h; sourceTree = "<group>"; };
