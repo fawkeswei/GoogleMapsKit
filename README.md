@@ -1,4 +1,4 @@
-#GoogleMapsKit ![build_status](https://www.cisimple.com/jobs/u8m5fmtnl7rykh7k7/build_status.png) [![Build Status](https://travis-ci.org/fawkeswei/GoogleMapsKit.png?branch=master)](https://travis-ci.org/fawkeswei/GoogleMapsKit)
+#GoogleMapsKit  [![Build Status](https://travis-ci.org/fawkeswei/GoogleMapsKit.png?branch=master)](https://travis-ci.org/fawkeswei/GoogleMapsKit)
 
 Launch native Google Maps for iPhone right from your app.
 
@@ -20,7 +20,15 @@ Launch Google Maps
 	                         mapMode:GoogleMapsModeDefault
 	                            view:GoogleMapsViewClearAll];
 
-	
+Launch Google Maps With Callback
+
+	[GoogleMapsKit showMapWithCenter:CLLocationCoordinate2DMake(25.0, 121.5)
+	                            zoom:14
+	                         mapMode:GoogleMapsModeDefault
+	                            view:GoogleMapsViewClearAll
+	                 callbackAppName:@"GoogleMapsKitDemo"
+	               callBackUrlScheme:@"googlemapskitdemo://"];
+
 Search Google Maps with keyword
 
 	[GoogleMapsKit showMapWithSearchKeyword:@"Starbucks"
@@ -37,7 +45,7 @@ Show Directions
                                                     directionsMode:GoogleMapsDirectionsModeDriving];
 
 
-See `GoogleMapsKit.h` for more convenience methods.
+See `GoogleMapsKit.h` for more convenience methods. See Demo project for actual usages.
 
 #Install
 
@@ -49,7 +57,7 @@ Two ways to install
 
 #License
 
-Copyright (C) 2013 Fawkes Wei
+Copyright (C) 2014 Fawkes Wei
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
