@@ -1,11 +1,11 @@
-#GoogleMapsKit  [![Build Status](https://travis-ci.org/fawkeswei/GoogleMapsKit.png?branch=master)](https://travis-ci.org/fawkeswei/GoogleMapsKit)
+# GoogleMapsKit  [![Build Status](https://travis-ci.org/fawkeswei/GoogleMapsKit.png?branch=master)](https://travis-ci.org/fawkeswei/GoogleMapsKit)
 
 Launch native Google Maps for iPhone right from your app.
 
 Find Google Maps custom url documentation [here](https://developers.google.com/maps/documentation/ios/urlscheme) 
 
 
-#Usage
+# Usage
 
 Test if Google Maps for iPhone installed
 
@@ -47,7 +47,7 @@ Show Directions
 
 See `GoogleMapsKit.h` for more convenience methods. See Demo project for actual usages.
 
-#Install
+# Install
 
 Two ways to install
 
@@ -55,7 +55,7 @@ Two ways to install
 2. Use [Cocoapods](https://github.com/CocoaPods/CocoaPods)
 
 
-#License
+# License
 
 Copyright (C) 2014 Fawkes Wei
 
