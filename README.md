@@ -52,7 +52,7 @@ See `GoogleMapsKit.h` for more convenience methods. See Demo project for actual 
 Two ways to install
 
 1. Drag `GoogleMapsKit/` folder to your project.
-2. Use [Cocoapods](https://github.com/CocoaPods/CocoaPods)
+2. Use [CocoaPods](https://github.com/CocoaPods/CocoaPods)
 
 
 #License
