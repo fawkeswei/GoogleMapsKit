@@ -1,4 +1,4 @@
-# GoogleMapsKit  [![Build Status](https://travis-ci.org/fawkeswei/GoogleMapsKit.png?branch=master)](https://travis-ci.org/fawkeswei/GoogleMapsKit)
+# GoogleMapsKit  [![Build Status](https://travis-ci.org/fawkeswei/GoogleMapsKit.svg?branch=master)](https://travis-ci.org/fawkeswei/GoogleMapsKit)
 
 Launch native Google Maps for iPhone right from your app.
 
